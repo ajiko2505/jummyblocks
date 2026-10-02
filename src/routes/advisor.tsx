@@ -4,6 +4,7 @@ import { products } from "@/lib/products";
 import { waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/advisor")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Block Advisor — Jummy Blocks" },

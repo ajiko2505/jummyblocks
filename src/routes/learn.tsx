@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/learn")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Learn Hub — Jummy Blocks" },

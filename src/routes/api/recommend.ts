@@ -12,6 +12,7 @@ import {
 const Body = z.object({ requirements: z.string().trim().min(5).max(2000) });
 
 export const Route = createFileRoute("/api/recommend")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async ({ request }) => {

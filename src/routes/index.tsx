@@ -3,6 +3,7 @@ import hero from "@/assets/hero.jpg";
 import { products, specRows } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Jummy Blocks — Know Your Blocks. Build With Confidence." },

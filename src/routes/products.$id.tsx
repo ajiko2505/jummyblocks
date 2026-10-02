@@ -4,6 +4,7 @@ import { products, specRows } from "@/lib/products";
 import { site, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/products/$id")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const product = products.find((p) => p.id === params.id);
     if (!product) throw notFound();
@@ -13,7 +14,8 @@ export const Route = createFileRoute("/products/$id")({
     if (!loaderData) return { meta: [{ title: "Product not found — Jummy Blocks" }, { name: "robots", content: "noindex" }] };
     const p = loaderData.product;
     const t = `${p.name} — Jummy Blocks`;
-    return { meta: [{ title: t }, { name: "description", content: p.description }, { property: "og:title", content: t }, { property: "og:description", content: p.description }] };
+    return { meta: [{ title: t }, { name: "description", content: p.description }, { property: "og:title", content: t }, { property: "og:description", content: p.description }, { property: "og:type", content: "product" }, { name: "twitter:card", content: "summary" }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Product", name: p.name, description: p.description, category: p.category, brand: { "@type": "Brand", name: "Jummy Blocks" }, offers: { "@type": "Offer", priceCurrency: "NGN", price: p.price.replace(/[^0-9.]/g, ""), availability: "https://schema.org/InStock", url: `https://pixel-perfect-paint-949.lovable.app/products/${p.id}` } }) }] };
   },
   notFoundComponent: ProductNotFound,
   component: ProductPage,
@@ -45,7 +47,7 @@ function ProductPage() {
           {p.gallery.length > 1 && (
             <div className="mt-3 flex gap-2">
               {p.gallery.map((g, i) => (
-                <button key={i} onClick={() => setImg(i)} className={`overflow-hidden rounded-sm border-2 ${i === img ? "border-safety" : "border-transparent"}`}>
+                <button key={i} onClick={() => setImg(i)} aria-label={`View image ${i + 1} of ${p.name}`} aria-pressed={i === img} className={`overflow-hidden rounded-sm border-2 ${i === img ? "border-safety" : "border-transparent"}`}>
                   <img src={g} alt="" width={944} height={704} loading="lazy" className="h-16 w-20 object-cover" />
                 </button>
               ))}

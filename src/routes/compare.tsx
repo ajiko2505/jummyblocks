@@ -3,6 +3,7 @@ import { useState } from "react";
 import { products, specRows, type Product } from "@/lib/products";
 
 export const Route = createFileRoute("/compare")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Compare Blocks & Pavers — Jummy Blocks" },
