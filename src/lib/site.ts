@@ -7,6 +7,8 @@ export const site = {
   hours: "Monday – Saturday | 8am – 5pm",
   // Set this to your online shop URL to show a "Buy online" button on product pages.
   shopUrl: "",
+  facebook: "https://www.facebook.com/jummyblocks",
+  instagram: "https://www.instagram.com/jummyblocks",
 };
 
 export function waLink(message: string) {

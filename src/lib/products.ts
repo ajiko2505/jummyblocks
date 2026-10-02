@@ -23,6 +23,8 @@ export type Product = {
   colours: string;
   price: string;
   unit: string;
+  /** Optional direct link where this product is sold online. Falls back to site.shopUrl. */
+  buyUrl?: string;
 };
 
 // Single source of truth for everything Jummy Blocks sells.

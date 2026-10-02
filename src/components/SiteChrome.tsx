@@ -4,6 +4,7 @@ import { site, waLink, defaultWaMessage } from "@/lib/site";
 
 const nav = [
   { to: "/learn", label: "Learn" },
+  { to: "/shop", label: "Shop" },
   { to: "/catalogue", label: "Catalogue" },
   { to: "/compare", label: "Compare" },
   { to: "/advisor", label: "Advisor" },
@@ -36,7 +37,7 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link to="/catalogue" className="rounded-sm bg-safety px-4 py-2 text-sm font-semibold text-safety-foreground transition-colors hover:bg-safety/85">Shop now</Link>
+          <Link to="/shop" className="rounded-sm bg-safety px-4 py-2 text-sm font-semibold text-safety-foreground transition-colors hover:bg-safety/85">Shop now</Link>
           <Link to="/quote" className="hidden rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-ink-foreground transition-colors hover:bg-safety sm:inline-block">Request a quote</Link>
           <button aria-label="Menu" onClick={() => setOpen(!open)} className="grid h-9 w-9 place-items-center rounded-sm border md:hidden">
             <span className="font-mono text-sm">{open ? "×" : "≡"}</span>
@@ -82,7 +83,10 @@ export function Footer() {
             <li><Link to="/catalogue" className="hover:text-safety">Products</Link></li>
             <li><Link to="/compare" className="hover:text-safety">Compare</Link></li>
             <li><Link to="/advisor" className="hover:text-safety">Block Advisor</Link></li>
-            <li><Link to="/quote" className="hover:text-safety">Contact Us</Link></li>
+            <li><Link to="/shop" className="hover:text-safety">Shop</Link></li>
+            <li><Link to="/about" className="hover:text-safety">About Us</Link></li>
+            <li><Link to="/contact" className="hover:text-safety">Contact Us</Link></li>
+            <li><Link to="/terms" className="hover:text-safety">Terms &amp; Conditions</Link></li>
           </ul>
         </div>
         <div>
@@ -100,6 +104,12 @@ export function Footer() {
           <p className="text-sm text-ink-foreground/80">Products made to Nigerian Industrial Standards and tested for strength before delivery.</p>
           <p className="eyebrow mb-3 mt-6">Follow us</p>
           <a href={waLink("Hello Jummy Blocks!")} target="_blank" rel="noopener noreferrer" className="inline-block rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">WhatsApp</a>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="inline-flex items-center gap-2 rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M14 8V6.5c0-.8.2-1.3 1.4-1.3H17V2.2C16.7 2.1 15.7 2 14.6 2 12.2 2 10.6 3.4 10.6 6.1V8H8v3.2h2.6V22H14V11.2h2.7L17 8h-3Z"/></svg>Facebook</a>
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="inline-flex items-center gap-2 rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" className="fill-current"/></svg>Instagram</a>
+          </div>
         </div>
       </div>
       <div className="border-t border-ink-foreground/15">
