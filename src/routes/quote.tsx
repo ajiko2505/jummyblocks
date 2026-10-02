@@ -4,6 +4,7 @@ import { z } from "zod";
 import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/quote")({
+  staticData: { sitemap: true },
   validateSearch: z.object({ product: z.string().optional() }),
   head: () => ({
     meta: [

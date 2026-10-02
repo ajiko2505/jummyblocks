@@ -4,6 +4,7 @@ import { products, specRows } from "@/lib/products";
 import { site, waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/products/$id")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const product = products.find((p) => p.id === params.id);
     if (!product) throw notFound();
@@ -45,7 +46,7 @@ function ProductPage() {
           {p.gallery.length > 1 && (
             <div className="mt-3 flex gap-2">
               {p.gallery.map((g, i) => (
-                <button key={i} onClick={() => setImg(i)} className={`overflow-hidden rounded-sm border-2 ${i === img ? "border-safety" : "border-transparent"}`}>
+                <button key={i} onClick={() => setImg(i)} aria-label={`View image ${i + 1} of ${p.name}`} aria-pressed={i === img} className={`overflow-hidden rounded-sm border-2 ${i === img ? "border-safety" : "border-transparent"}`}>
                   <img src={g} alt="" width={944} height={704} loading="lazy" className="h-16 w-20 object-cover" />
                 </button>
               ))}

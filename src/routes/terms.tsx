@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/terms")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Terms & Conditions — Jummy Blocks" },

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { products, categories } from "@/lib/products";
 
 export const Route = createFileRoute("/catalogue")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Product Catalogue — Jummy Blocks" },

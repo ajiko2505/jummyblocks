@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "About Us — Jummy Blocks, Lagos" },
@@ -25,7 +26,7 @@ function About() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6">
       <p className="eyebrow mb-3">About us</p>
-      <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Know your blocks.<br />Build with confidence.</h1>
+      <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">About Jummy Blocks: know your blocks, build with confidence.</h1>
       <p className="mt-6 max-w-2xl text-lg text-muted-foreground">Jummy Blocks supplies interlocking paving stones, slabs, sandcrete blocks, kerbs and drainage units to homeowners, contractors, developers and government projects across Nigeria. We believe a good build starts with an informed buyer.</p>
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
         {values.map(([t, d], i) => (
