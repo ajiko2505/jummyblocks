@@ -45,7 +45,7 @@ function Quote() {
               <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Phone</span><input required type="tel" className={field} /></label>
               <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Location</span><input required placeholder="Lekki, Lagos" className={field} /></label>
               <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Product</span>
-                <select defaultValue={product ?? products[0].id} className={field}>
+                <select defaultValue={product ?? products[0]?.id} className={field}>
                   {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
                 </select>
               </label>

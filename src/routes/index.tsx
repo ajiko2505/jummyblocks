@@ -26,7 +26,7 @@ const topics = [
 const steps = ["Learn the basics", "Compare products", "Choose with confidence", "Get a fair quote"];
 
 function Index() {
-  const featured = [products[1], products[2], products[4]];
+  const featured = [products[1], products[2], products[4]].filter((p): p is (typeof products)[number] => !!p);
   return (
     <>
       <section className="relative overflow-hidden">

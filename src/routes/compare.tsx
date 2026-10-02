@@ -15,7 +15,7 @@ export const Route = createFileRoute("/compare")({
 });
 
 function Compare() {
-  const [sel, setSel] = useState<string[]>([products[0].id, products[1].id, products[2].id]);
+  const [sel, setSel] = useState<string[]>(products.slice(0, 3).map((p) => p.id));
   const chosen = products.filter((p) => sel.includes(p.id));
   const toggle = (id: string) =>
     setSel((s) => (s.includes(id) ? s.filter((x) => x !== id) : s.length < 4 ? [...s, id] : s));
