@@ -37,7 +37,6 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link to="/catalogue" className="rounded-sm bg-safety px-4 py-2 text-sm font-semibold text-safety-foreground transition-colors hover:bg-safety/85">Shop now</Link>
           <Link to="/quote" className="hidden rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-ink-foreground transition-colors hover:bg-safety sm:inline-block">Request a quote</Link>
           <button aria-label="Menu" onClick={() => setOpen(!open)} className="grid h-9 w-9 place-items-center rounded-sm border md:hidden">
             <span className="font-mono text-sm">{open ? "×" : "≡"}</span>
