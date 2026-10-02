@@ -14,7 +14,8 @@ export const Route = createFileRoute("/products/$id")({
     if (!loaderData) return { meta: [{ title: "Product not found — Jummy Blocks" }, { name: "robots", content: "noindex" }] };
     const p = loaderData.product;
     const t = `${p.name} — Jummy Blocks`;
-    return { meta: [{ title: t }, { name: "description", content: p.description }, { property: "og:title", content: t }, { property: "og:description", content: p.description }] };
+    return { meta: [{ title: t }, { name: "description", content: p.description }, { property: "og:title", content: t }, { property: "og:description", content: p.description }, { property: "og:type", content: "product" }, { name: "twitter:card", content: "summary" }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Product", name: p.name, description: p.description, category: p.category, brand: { "@type": "Brand", name: "Jummy Blocks" }, offers: { "@type": "Offer", priceCurrency: "NGN", price: p.price.replace(/[^0-9.]/g, ""), availability: "https://schema.org/InStock", url: `https://pixel-perfect-paint-949.lovable.app/products/${p.id}` } }) }] };
   },
   notFoundComponent: ProductNotFound,
   component: ProductPage,

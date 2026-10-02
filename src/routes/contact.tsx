@@ -12,6 +12,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "LocalBusiness", name: site.name, telephone: "+2348066278073", email: site.email, url: "https://pixel-perfect-paint-949.lovable.app", address: { "@type": "PostalAddress", streetAddress: "No 11 Jubril Aminu, Parkview Estate", addressLocality: "Ikoyi", addressRegion: "Lagos", addressCountry: "NG" }, openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "08:00", closes: "17:00" }], sameAs: [site.facebook, site.instagram] }) }],
   }),
   component: Contact,
 });
