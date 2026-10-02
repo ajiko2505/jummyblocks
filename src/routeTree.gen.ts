@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ApiRecommendRouteImport } from './routes/api/recommend'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
@@ -67,6 +68,11 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/quote'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/quote'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/learn'
     | '/quote'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   LearnRoute: typeof LearnRoute
   QuoteRoute: typeof QuoteRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiRecommendRoute: typeof ApiRecommendRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -251,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnRoute: LearnRoute,
   QuoteRoute: QuoteRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiRecommendRoute: ApiRecommendRoute,
   ProductsIdRoute: ProductsIdRoute,
