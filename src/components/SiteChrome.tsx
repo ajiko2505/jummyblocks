@@ -4,7 +4,7 @@ import { site, waLink, defaultWaMessage } from "@/lib/site";
 
 const nav = [
   { to: "/learn", label: "Learn" },
-  { to: "/shop", label: "Shop" },
+  
   { to: "/catalogue", label: "Catalogue" },
   { to: "/compare", label: "Compare" },
   { to: "/advisor", label: "Advisor" },
@@ -37,7 +37,6 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link to="/shop" className="rounded-sm bg-safety px-4 py-2 text-sm font-semibold text-safety-foreground transition-colors hover:bg-safety/85">Shop now</Link>
           <Link to="/quote" className="hidden rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-ink-foreground transition-colors hover:bg-safety sm:inline-block">Request a quote</Link>
           <button aria-label="Menu" onClick={() => setOpen(!open)} className="grid h-9 w-9 place-items-center rounded-sm border md:hidden">
             <span className="font-mono text-sm">{open ? "×" : "≡"}</span>
@@ -83,7 +82,7 @@ export function Footer() {
             <li><Link to="/catalogue" className="hover:text-safety">Products</Link></li>
             <li><Link to="/compare" className="hover:text-safety">Compare</Link></li>
             <li><Link to="/advisor" className="hover:text-safety">Block Advisor</Link></li>
-            <li><Link to="/shop" className="hover:text-safety">Shop</Link></li>
+            
             <li><Link to="/about" className="hover:text-safety">About Us</Link></li>
             <li><Link to="/contact" className="hover:text-safety">Contact Us</Link></li>
             <li><Link to="/terms" className="hover:text-safety">Terms &amp; Conditions</Link></li>
