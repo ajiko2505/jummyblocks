@@ -83,7 +83,7 @@ function Advisor() {
       <p className="mt-4 max-w-xl text-muted-foreground">Tell us what you're building, where, and roughly how big. We'll match products from our catalogue and explain why.</p>
 
       <form onSubmit={run} className="mt-8 rounded-md border bg-card p-5">
-        <textarea value={req} onChange={(e) => setReq(e.target.value)} rows={4} maxLength={2000}
+        <textarea aria-label="Describe your project requirements" value={req} onChange={(e) => setReq(e.target.value)} rows={4} maxLength={2000}
           placeholder="e.g. Paving for a church car park in Ibadan, around 400 m², buses park there on Sundays"
           className="w-full resize-none rounded-sm border bg-background p-3 text-sm outline-none focus:border-safety" />
         <div className="mt-3 flex flex-wrap gap-2">
