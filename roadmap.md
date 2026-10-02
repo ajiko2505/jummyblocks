@@ -4,3 +4,9 @@
 - [x] Home, Learn, Catalogue, Compare, Quote pages
 - [x] Block Advisor (AI product recommendations)
 - [x] Compare page: highlighted differences + mobile layout
+- [x] Address, Shop now, WhatsApp button, HFP-style footer
+- [x] Product pages with specs, photos, Buy on WhatsApp
+- [x] Full product range feeding catalogue + Advisor
+- [x] Advisor enquiry form (sends via WhatsApp)
+- [ ] Email each enquiry to owner — blocked: needs an email domain the owner owns
+- [ ] "Buy online" button — blocked: needs online shop URL
