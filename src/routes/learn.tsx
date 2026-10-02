@@ -9,6 +9,14 @@ export const Route = createFileRoute("/learn")({
       { property: "og:title", content: "Learn Hub — Jummy Blocks" },
       { property: "og:description", content: "Understand paving stones and blocks before you buy." },
     ],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: guides.map((g) => ({ "@type": "Question", name: g.t, acceptedAnswer: { "@type": "Answer", text: g.b } })),
+      }),
+    }],
   }),
   component: Learn,
 });
