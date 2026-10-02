@@ -120,7 +120,7 @@ function Advisor() {
                       <span className="shrink-0 font-mono text-sm font-semibold">{p.price}/{p.unit}</span>
                     </div>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{r.reason}</p>
-                    <Link to="/quote" search={{ product: p.id }} className="mt-4 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Get quote</Link>
+                    <Link to="/products/$id" params={{ id: p.id }} className="mt-4 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">View product &amp; buy</Link>
                   </div>
                 </div>
               );

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/api/recommend")({
         if (!apiKey) return Response.json({ error: "AI is not configured." }, { status: 500 });
 
         const catalogue = products
-          .map((p) => `id=${p.id} | ${p.name} | ${p.category} | size ${p.size} | strength ${p.strength} | weight ${p.weight} | absorption ${p.absorption} | traffic ${p.traffic} | best for ${p.bestFor} | ${p.price}/${p.unit}`)
+          .map((p) => `id=${p.id} | ${p.name} | ${p.category} | size ${p.size} | strength ${p.strength} | weight ${p.weight} | absorption ${p.absorption} | traffic ${p.traffic} | best for ${p.bestFor} | colours ${p.colours} | ${p.price}/${p.unit}`)
           .join("\n");
 
         const runIdFetch = createLovableAiGatewayRunIdFetch(getLovableAiGatewayRunId(request));
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/api/recommend")({
         const result = streamText({
           model: provider.responses("openai/gpt-6-astra"),
           abortSignal: request.signal,
-          system: `You are a Nigerian construction materials advisor for Jummy Blocks. Recommend 1-3 products ONLY from this catalogue:\n${catalogue}\n\nOutput format, nothing else:\nPRODUCT: <id> | <one or two sentence reason tied to the user's needs, mentioning a spec>\n(repeat per product, best first)\nTIP: <one practical installation or buying tip>\nIf nothing fits, output only TIP: explaining what to ask a supplier.`,
+          system: `You are a Nigerian construction materials advisor for Jummy Blocks. Recommend 1-3 products ONLY from this catalogue (these are the only products Jummy Blocks sells; never invent products, specs or prices):\n${catalogue}\n\nOutput format, nothing else:\nPRODUCT: <id> | <one or two sentence reason tied to the user's needs, mentioning a spec>\n(repeat per product, best first)\nTIP: <one practical installation or buying tip>\nIf nothing fits, output only TIP: explaining what to ask a supplier.`,
           prompt: parsed.data.requirements,
           providerOptions: {
             openai: {

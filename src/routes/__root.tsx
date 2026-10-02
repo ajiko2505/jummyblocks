@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { Header, Footer } from "../components/SiteChrome";
+import { Header, Footer, WhatsAppButton } from "../components/SiteChrome";
 
 function NotFoundComponent() {
   return (
@@ -123,6 +123,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </QueryClientProvider>
   );
