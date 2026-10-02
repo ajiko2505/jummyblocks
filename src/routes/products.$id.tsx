@@ -101,6 +101,28 @@ function ProductPage() {
           </dl>
         </div>
       </div>
+      <section className="mt-14 border-y py-10" aria-labelledby="installation-video-heading">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="eyebrow mb-2">Installation video</p>
+            <h2 id="installation-video-heading" className="text-2xl font-extrabold tracking-tight">See how {p.name} is installed</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">A short site demonstration showing the correct setting and finishing process.</p>
+        </div>
+        <div className="overflow-hidden rounded-md border bg-ink">
+          <video
+            className="aspect-video w-full object-cover"
+            controls
+            playsInline
+            preload="metadata"
+            poster={p.image}
+            aria-label={`Installation demonstration for ${p.name}`}
+          >
+            <source src={p.installationVideo} type="video/mp4" />
+            Your browser does not support this video.
+          </video>
+        </div>
+      </section>
       {related.length > 0 && (
         <section className="mt-14">
           <h2 className="mb-4 text-xl font-extrabold">Related products</h2>
