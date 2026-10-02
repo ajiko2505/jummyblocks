@@ -1,0 +1,91 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
+import { products, specRows } from "@/lib/products";
+import { site, waLink } from "@/lib/site";
+
+export const Route = createFileRoute("/products/$id")({
+  loader: ({ params }) => {
+    const product = products.find((p) => p.id === params.id);
+    if (!product) throw notFound();
+    return { product };
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [{ title: "Product not found — Jummy Blocks" }, { name: "robots", content: "noindex" }] };
+    const p = loaderData.product;
+    const t = `${p.name} — Jummy Blocks`;
+    return { meta: [{ title: t }, { name: "description", content: p.description }, { property: "og:title", content: t }, { property: "og:description", content: p.description }] };
+  },
+  notFoundComponent: ProductNotFound,
+  component: ProductPage,
+});
+
+function ProductNotFound() {
+  return (
+    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6">
+      <h1 className="text-3xl font-extrabold">Product not found</h1>
+      <Link to="/catalogue" className="mt-4 inline-block font-semibold underline">Back to catalogue</Link>
+    </div>
+  );
+}
+
+function ProductPage() {
+  const { product: p } = Route.useLoaderData();
+  const [img, setImg] = useState(0);
+  const msg = `Hello Jummy Blocks, I'd like to buy ${p.name} (${p.price}/${p.unit}). Please share availability and delivery cost.`;
+  const related = products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
+
+  return (
+    <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6">
+      <nav className="mb-6 font-mono text-xs text-muted-foreground">
+        <Link to="/catalogue" className="hover:text-foreground">Catalogue</Link> / {p.category}
+      </nav>
+      <div className="grid gap-8 md:grid-cols-2">
+        <div>
+          <img src={p.gallery[img] ?? p.image} alt={p.name} width={944} height={704} className="aspect-[4/3] w-full rounded-md border object-cover" />
+          {p.gallery.length > 1 && (
+            <div className="mt-3 flex gap-2">
+              {p.gallery.map((g, i) => (
+                <button key={i} onClick={() => setImg(i)} className={`overflow-hidden rounded-sm border-2 ${i === img ? "border-safety" : "border-transparent"}`}>
+                  <img src={g} alt="" width={944} height={704} loading="lazy" className="h-16 w-20 object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div>
+          <p className="eyebrow mb-2">{p.category}</p>
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{p.name}</h1>
+          <p className="mt-3 text-muted-foreground">{p.description}</p>
+          <p className="mt-5 font-mono text-3xl font-bold">{p.price}<span className="text-base text-muted-foreground"> / {p.unit}</span></p>
+          <p className="font-mono text-xs text-muted-foreground">Indicative price, ex-delivery</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Buy on WhatsApp</a>
+            {site.shopUrl && <a href={site.shopUrl} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Buy online</a>}
+            <Link to="/quote" search={{ product: p.id }} className="rounded-sm border border-foreground px-6 py-3 text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Request a quote</Link>
+          </div>
+          <dl className="mt-8 divide-y rounded-md border bg-card">
+            {[...specRows, { key: "colours" as const, label: "Colours" }].map((r) => (
+              <div key={r.key} className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 px-4 py-3 text-sm">
+                <dt className="text-muted-foreground">{r.label}</dt>
+                <dd className="text-right font-mono">{String(p[r.key])}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+      {related.length > 0 && (
+        <section className="mt-14">
+          <h2 className="mb-4 text-xl font-extrabold">Related products</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {related.map((r) => (
+              <Link key={r.id} to="/products/$id" params={{ id: r.id }} className="overflow-hidden rounded-md border bg-card hover:border-foreground">
+                <img src={r.image} alt={r.name} width={944} height={704} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+                <p className="p-4 font-bold">{r.name}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}

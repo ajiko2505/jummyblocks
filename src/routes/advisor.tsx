@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { products } from "@/lib/products";
+import { waLink } from "@/lib/site";
 
 export const Route = createFileRoute("/advisor")({
   head: () => ({
@@ -120,7 +121,7 @@ function Advisor() {
                       <span className="shrink-0 font-mono text-sm font-semibold">{p.price}/{p.unit}</span>
                     </div>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{r.reason}</p>
-                    <Link to="/quote" search={{ product: p.id }} className="mt-4 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Get quote</Link>
+                    <Link to="/products/$id" params={{ id: p.id }} className="mt-4 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">View product &amp; buy</Link>
                   </div>
                 </div>
               );
@@ -135,6 +136,55 @@ function Advisor() {
         </div>
       )}
       {!loading && out && recs.length === 0 && !tip && <p className="mt-6 whitespace-pre-wrap text-sm">{out}</p>}
+      <EnquiryForm project={req} suggested={recs.map((r) => products.find((x) => x.id === r.id)?.name).filter(Boolean).join(", ")} />
     </div>
+  );
+}
+
+const inp = "mt-1 h-11 w-full rounded-sm border bg-background px-3 text-sm outline-none focus:border-safety";
+const lbl = "font-mono text-xs uppercase tracking-wider text-muted-foreground";
+
+function EnquiryForm({ project, suggested }: { project: string; suggested: string }) {
+  const [sent, setSent] = useState(false);
+  function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const g = (k: string) => String(f.get(k) ?? "").trim();
+    const msg = [
+      "New enquiry from the Jummy Blocks website",
+      `Name: ${g("name")}`,
+      `Phone: ${g("phone")}`,
+      g("email") && `Email: ${g("email")}`,
+      `Site location: ${g("location")}`,
+      g("budget") && `Budget: ${g("budget")}`,
+      g("timeline") && `Timeline: ${g("timeline")}`,
+      `Project: ${g("project")}`,
+      suggested && `Advisor suggested: ${suggested}`,
+    ].filter(Boolean).join("\n");
+    window.open(waLink(msg), "_blank", "noopener,noreferrer");
+    setSent(true);
+  }
+  return (
+    <section className="mt-14 rounded-md border bg-card p-6 md:p-8">
+      <p className="eyebrow mb-2">Enquiry</p>
+      <h2 className="text-2xl font-extrabold tracking-tight">Send us your project details</h2>
+      <p className="mt-2 max-w-xl text-sm text-muted-foreground">Our team will reply with availability, a firm price and delivery to your site.</p>
+      {sent ? (
+        <p className="mt-6 rounded-sm bg-blueprint p-4 text-sm text-blueprint-foreground">Thank you! Your enquiry has opened in WhatsApp — press send there and we'll respond shortly.</p>
+      ) : (
+        <form key={project} onSubmit={submit} className="mt-6 grid gap-4 sm:grid-cols-2">
+          <label><span className={lbl}>Full name *</span><input name="name" required maxLength={100} className={inp} /></label>
+          <label><span className={lbl}>Phone *</span><input name="phone" type="tel" required maxLength={20} className={inp} /></label>
+          <label><span className={lbl}>Email</span><input name="email" type="email" maxLength={255} className={inp} /></label>
+          <label><span className={lbl}>Site location *</span><input name="location" required maxLength={150} placeholder="e.g. Ikoyi, Lagos" className={inp} /></label>
+          <label><span className={lbl}>Budget</span><input name="budget" maxLength={60} placeholder="e.g. ₦1.5m" className={inp} /></label>
+          <label><span className={lbl}>Timeline</span><input name="timeline" maxLength={60} placeholder="e.g. Next month" className={inp} /></label>
+          <label className="sm:col-span-2"><span className={lbl}>Project details *</span>
+            <textarea name="project" required maxLength={2000} rows={4} defaultValue={project} className="mt-1 w-full resize-none rounded-sm border bg-background p-3 text-sm outline-none focus:border-safety" />
+          </label>
+          <button className="rounded-sm bg-ink py-3 font-semibold text-ink-foreground hover:bg-safety sm:col-span-2">Send enquiry</button>
+        </form>
+      )}
+    </section>
   );
 }

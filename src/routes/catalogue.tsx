@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { products } from "@/lib/products";
+import { products, categories } from "@/lib/products";
 
 export const Route = createFileRoute("/catalogue")({
   head: () => ({
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/catalogue")({
   component: Catalogue,
 });
 
-const cats = ["All", "Interlocks", "Blocks", "Kerbs & Drainage"];
+const cats = categories;
 
 function Catalogue() {
   const [cat, setCat] = useState("All");
@@ -31,11 +31,11 @@ function Catalogue() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((p) => (
           <div key={p.id} className="flex flex-col overflow-hidden rounded-md border bg-card">
-            <img src={p.image} alt={p.name} loading="lazy" width={944} height={704} className="aspect-[4/3] w-full object-cover" />
+            <Link to="/products/$id" params={{ id: p.id }}><img src={p.image} alt={p.name} loading="lazy" width={944} height={704} className="aspect-[4/3] w-full object-cover" /></Link>
             <div className="flex flex-1 flex-col p-5">
               <p className="font-mono text-xs text-muted-foreground">{p.category}</p>
               <div className="mt-1 flex items-start justify-between gap-3">
-                <h2 className="font-bold">{p.name}</h2>
+                <Link to="/products/$id" params={{ id: p.id }} className="font-bold hover:text-safety">{p.name}</Link>
                 <span className="shrink-0 font-mono text-sm font-semibold">{p.price}<span className="text-muted-foreground">/{p.unit}</span></span>
               </div>
               <dl className="mt-4 grid grid-cols-2 gap-y-1 border-t pt-4 font-mono text-xs">
@@ -43,7 +43,7 @@ function Catalogue() {
                 <dt className="text-muted-foreground">Strength</dt><dd className="text-right">{p.strength}</dd>
                 <dt className="text-muted-foreground">Best for</dt><dd className="text-right">{p.bestFor}</dd>
               </dl>
-              <Link to="/quote" search={{ product: p.id }} className="mt-5 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Get quote</Link>
+              <Link to="/products/$id" params={{ id: p.id }} className="mt-5 rounded-sm border border-foreground py-2.5 text-center text-sm font-semibold hover:bg-ink hover:text-ink-foreground">View product &amp; buy</Link>
             </div>
           </div>
         ))}
