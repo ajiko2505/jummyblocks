@@ -60,7 +60,7 @@ function ProductPage() {
           <p className="font-mono text-xs text-muted-foreground">Indicative price, ex-delivery</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Buy on WhatsApp</a>
-            {site.shopUrl && <a href={site.shopUrl} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Buy online</a>}
+            {(p.buyUrl || site.shopUrl) && <a href={p.buyUrl || site.shopUrl} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Buy online</a>}
             <Link to="/quote" search={{ product: p.id }} className="rounded-sm border border-foreground px-6 py-3 text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Request a quote</Link>
           </div>
           <dl className="mt-8 divide-y rounded-md border bg-card">
