@@ -37,7 +37,7 @@ function About() {
         ))}
       </div>
       <div className="mt-12 flex flex-wrap gap-3">
-        <Link to="/shop" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Shop products</Link>
+        <Link to="/catalogue" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Shop products</Link>
         <Link to="/contact" className="rounded-sm border px-6 py-3 text-sm font-semibold hover:bg-card">Contact us</Link>
       </div>
     </div>
