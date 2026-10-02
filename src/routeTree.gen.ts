@@ -17,6 +17,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ApiRecommendRouteImport } from './routes/api/recommend'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
@@ -61,6 +62,11 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/quote'
+    | '/shop'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/quote'
+    | '/shop'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/quote'
+    | '/shop'
     | '/terms'
     | '/api/recommend'
     | '/products/$id'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LearnRoute: typeof LearnRoute
   QuoteRoute: typeof QuoteRoute
+  ShopRoute: typeof ShopRoute
   TermsRoute: typeof TermsRoute
   ApiRecommendRoute: typeof ApiRecommendRoute
   ProductsIdRoute: typeof ProductsIdRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LearnRoute: LearnRoute,
   QuoteRoute: QuoteRoute,
+  ShopRoute: ShopRoute,
   TermsRoute: TermsRoute,
   ApiRecommendRoute: ApiRecommendRoute,
   ProductsIdRoute: ProductsIdRoute,
