@@ -10,14 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdvisorRouteImport } from './routes/advisor'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ApiRecommendRouteImport } from './routes/api/recommend'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdvisorRoute = AdvisorRouteImport.update({
+  id: '/advisor',
+  path: '/advisor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogueRoute = CatalogueRouteImport.update({
@@ -40,43 +47,78 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRecommendRoute = ApiRecommendRouteImport.update({
+  id: '/api/recommend',
+  path: '/api/recommend',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/learn': typeof LearnRoute
   '/quote': typeof QuoteRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/catalogue' | '/compare' | '/learn' | '/quote'
+  fullPaths:
+    | '/'
+    | '/advisor'
+    | '/catalogue'
+    | '/compare'
+    | '/learn'
+    | '/quote'
+    | '/api/recommend'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalogue' | '/compare' | '/learn' | '/quote'
-  id: '__root__' | '/' | '/catalogue' | '/compare' | '/learn' | '/quote'
+  to:
+    | '/'
+    | '/advisor'
+    | '/catalogue'
+    | '/compare'
+    | '/learn'
+    | '/quote'
+    | '/api/recommend'
+  id:
+    | '__root__'
+    | '/'
+    | '/advisor'
+    | '/catalogue'
+    | '/compare'
+    | '/learn'
+    | '/quote'
+    | '/api/recommend'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdvisorRoute: typeof AdvisorRoute
   CatalogueRoute: typeof CatalogueRoute
   CompareRoute: typeof CompareRoute
   LearnRoute: typeof LearnRoute
   QuoteRoute: typeof QuoteRoute
+  ApiRecommendRoute: typeof ApiRecommendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/advisor': {
+      id: '/advisor'
+      path: '/advisor'
+      fullPath: '/advisor'
+      preLoaderRoute: typeof AdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalogue': {
@@ -116,15 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/recommend': {
+      id: '/api/recommend'
+      path: '/api/recommend'
+      fullPath: '/api/recommend'
+      preLoaderRoute: typeof ApiRecommendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdvisorRoute: AdvisorRoute,
   CatalogueRoute: CatalogueRoute,
   CompareRoute: CompareRoute,
   LearnRoute: LearnRoute,
   QuoteRoute: QuoteRoute,
+  ApiRecommendRoute: ApiRecommendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
