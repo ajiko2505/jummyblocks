@@ -39,7 +39,7 @@ function Index() {
             <p className="mt-5 max-w-lg text-lg text-ink-foreground/75">Nigeria's education-first guide to paving stones, interlocks, sandcrete blocks and kerbs — so you buy the right product, at the right strength, for the right job.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/learn" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Start learning</Link>
-              <Link to="/compare" className="rounded-sm border border-ink-foreground/40 px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-ink-foreground/10">Compare blocks</Link>
+              <Link to="/advisor" className="rounded-sm border border-ink-foreground/40 px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-ink-foreground/10">Ask the Block Advisor</Link>
             </div>
           </div>
         </div>

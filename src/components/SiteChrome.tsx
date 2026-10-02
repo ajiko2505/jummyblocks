@@ -5,6 +5,7 @@ const nav = [
   { to: "/learn", label: "Learn" },
   { to: "/catalogue", label: "Catalogue" },
   { to: "/compare", label: "Compare" },
+  { to: "/advisor", label: "Advisor" },
 ] as const;
 
 function Logo() {
