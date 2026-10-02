@@ -2,6 +2,31 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { products, specRows } from "@/lib/products";
 import { site, waLink } from "@/lib/site";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import { fetchShopifyProduct } from "@/lib/shopify";
+import { useCartStore } from "@/stores/cartStore";
+
+function AddToCart({ handle }: { handle: string }) {
+  const { data: sp } = useQuery({ queryKey: ["shopify-product", handle], queryFn: () => fetchShopifyProduct(handle), staleTime: 60_000 });
+  const addItem = useCartStore((s) => s.addItem);
+  const isLoading = useCartStore((s) => s.isLoading);
+  const variant = sp?.node.variants.edges[0]?.node;
+  if (!sp || !variant) return null;
+  return (
+    <button
+      disabled={isLoading || !variant.availableForSale}
+      onClick={async () => {
+        await addItem({ product: sp, variantId: variant.id, variantTitle: variant.title, price: variant.price, quantity: 1, selectedOptions: variant.selectedOptions });
+        toast.success(`${sp.node.title} added to cart`, { position: "top-center" });
+      }}
+      className="flex items-center gap-2 rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85 disabled:opacity-60"
+    >
+      {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : variant.availableForSale ? "Add to cart" : "Out of stock"}
+    </button>
+  );
+}
 
 export const Route = createFileRoute("/products/$id")({
   staticData: { sitemap: true },
@@ -61,7 +86,8 @@ function ProductPage() {
           <p className="mt-5 font-mono text-3xl font-bold">{p.price}<span className="text-base text-muted-foreground"> / {p.unit}</span></p>
           <p className="font-mono text-xs text-muted-foreground">Indicative price, ex-delivery</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground hover:bg-safety/85">Buy on WhatsApp</a>
+            <AddToCart handle={p.id} />
+            <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm border border-safety px-6 py-3 text-sm font-semibold text-foreground hover:bg-safety hover:text-safety-foreground">Buy on WhatsApp</a>
             {(p.buyUrl || site.shopUrl) && <a href={p.buyUrl || site.shopUrl} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Buy online</a>}
             <Link to="/quote" search={{ product: p.id }} className="rounded-sm border border-foreground px-6 py-3 text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Request a quote</Link>
           </div>
