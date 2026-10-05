@@ -74,7 +74,7 @@ export function Footer() {
         <div>
           <p className="eyebrow mb-3">Connect with us</p>
           <img src={logoAsset.url} alt="Jummy Blocks" width={180} height={132} loading="lazy" className="h-16 w-auto" />
-          <p className="mt-3 text-sm text-ink-foreground/70">Know Your Blocks. Build With Confidence. Quality paving stones, interlocks, blocks and kerbs for Nigerian projects.</p>
+          <p className="mt-3 text-sm text-ink-foreground/70">Quality paving stones, interlocks, blocks and kerbs for Nigerian projects.</p>
         </div>
         <div>
           <p className="eyebrow mb-3">Navigation</p>
