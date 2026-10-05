@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { site, waLink, defaultWaMessage } from "@/lib/site";
 import { CartDrawer } from "./CartDrawer";
+import logoAsset from "@/assets/jummy-logo.png.asset.json";
 
 const nav = [
   { to: "/learn", label: "Learn" },
@@ -13,9 +14,8 @@ const nav = [
 
 function Logo() {
   return (
-    <Link to="/" className="flex shrink-0 items-center gap-2.5">
-      <span className="grid h-8 w-8 place-items-center rounded-sm bg-ink font-mono text-sm font-bold text-ink-foreground">JB</span>
-      <span className="text-lg font-extrabold tracking-tight">JUMMY<span className="text-safety">BLOCKS</span></span>
+    <Link to="/" className="flex shrink-0 items-center" aria-label="Jummy Blocks — home">
+      <img src={logoAsset.url} alt="Jummy Blocks" width={180} height={132} className="h-14 w-auto sm:h-16" />
     </Link>
   );
 }
@@ -73,7 +73,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
         <div>
           <p className="eyebrow mb-3">Connect with us</p>
-          <p className="text-2xl font-extrabold tracking-tight">JUMMY<span className="text-safety">BLOCKS</span></p>
+          <img src={logoAsset.url} alt="Jummy Blocks" width={180} height={132} loading="lazy" className="h-16 w-auto" />
           <p className="mt-3 text-sm text-ink-foreground/70">Know Your Blocks. Build With Confidence. Quality paving stones, interlocks, blocks and kerbs for Nigerian projects.</p>
         </div>
         <div>
