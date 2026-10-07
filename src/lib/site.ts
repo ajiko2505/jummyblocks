@@ -9,6 +9,7 @@ export const site = {
   shopUrl: "",
   facebook: "https://web.facebook.com/",
   instagram: "https://www.instagram.com/jummyblocks/",
+  tiktok: "https://www.tiktok.com/@jummyblocks?lang=en-GB",
 };
 
 export function waLink(message: string) {

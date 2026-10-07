@@ -41,6 +41,7 @@
   --color-whatsapp-foreground: var(--whatsapp-foreground);
   --color-facebook: var(--facebook);
   --color-instagram: var(--instagram);
+  --color-tiktok: var(--tiktok);
 }
 
 :root {
@@ -77,6 +78,9 @@
   --instagram-1: oklch(0.83 0.15 85);
   --instagram-2: oklch(0.64 0.24 12);
   --instagram-3: oklch(0.52 0.24 290);
+  --tiktok: oklch(0.95 0.01 90);
+  --tiktok-cyan: oklch(0.85 0.14 200);
+  --tiktok-pink: oklch(0.64 0.24 5);
 }
 
 @layer base {
