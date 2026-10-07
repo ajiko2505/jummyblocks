@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { site, waLink, defaultWaMessage } from "@/lib/site";
 
-const mapsKey = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY"] as string | undefined;
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.address)}`;
 const embedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(site.address)}&z=16&output=embed`;
 
