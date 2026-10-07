@@ -10,3 +10,8 @@
 - [x] Advisor enquiry form (sends via WhatsApp)
 - [ ] Email each enquiry to owner — blocked: needs an email domain the owner owns
 - [ ] "Buy online" button — blocked: needs online shop URL
+- [x] Shopify store currency is Naira; product pages show live Shopify price
+- [x] WhatsApp order page
+- [ ] Track WhatsApp + Shopify orders together — needs owner OK to switch on Lovable Cloud
+- [ ] Real prices — waiting on owner's price list
+- [ ] Place a real test order — needs store claimed with payments set up
