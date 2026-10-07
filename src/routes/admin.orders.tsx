@@ -5,6 +5,7 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/orders")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Orders — Jummy Blocks staff" },
