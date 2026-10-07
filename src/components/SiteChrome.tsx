@@ -10,6 +10,7 @@ const nav = [
   { to: "/catalogue", label: "Catalogue" },
   { to: "/compare", label: "Compare" },
   { to: "/advisor", label: "Advisor" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 function Logo() {
@@ -32,7 +33,7 @@ export function Header() {
       </div>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-6">
         <Logo />
-        <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-medium text-muted-foreground md:flex lg:gap-8">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>{n.label}</Link>
           ))}
