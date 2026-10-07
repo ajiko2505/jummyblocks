@@ -106,10 +106,25 @@ export function Footer() {
           <p className="eyebrow mb-3 mt-6">Follow us</p>
           <a href={waLink("Hello Jummy Blocks!")} target="_blank" rel="noopener noreferrer" className="inline-block rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">WhatsApp</a>
           <div className="mt-2 flex flex-wrap gap-2">
-            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="inline-flex items-center gap-2 rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M14 8V6.5c0-.8.2-1.3 1.4-1.3H17V2.2C16.7 2.1 15.7 2 14.6 2 12.2 2 10.6 3.4 10.6 6.1V8H8v3.2h2.6V22H14V11.2h2.7L17 8h-3Z"/></svg>Facebook</a>
-            <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="inline-flex items-center gap-2 rounded-sm border border-ink-foreground/30 px-4 py-2 text-sm hover:border-safety hover:text-safety">
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" className="fill-current"/></svg>Instagram</a>
+            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Jummy Blocks on Facebook" title="Facebook"
+              className="grid h-10 w-10 place-items-center rounded-sm border border-ink-foreground/30 text-facebook transition-colors hover:border-facebook">
+              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true"><path d="M14 8V6.5c0-.8.2-1.3 1.4-1.3H17V2.2C16.7 2.1 15.7 2 14.6 2 12.2 2 10.6 3.4 10.6 6.1V8H8v3.2h2.6V22H14V11.2h2.7L17 8h-3Z"/></svg>
+            </a>
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Jummy Blocks on Instagram" title="Instagram"
+              className="grid h-10 w-10 place-items-center rounded-sm border border-ink-foreground/30 transition-colors hover:border-instagram">
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="url(#jb-ig-grad)" strokeWidth="2" aria-hidden="true">
+                <defs>
+                  <linearGradient id="jb-ig-grad" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" style={{ stopColor: "var(--instagram-1)" }} />
+                    <stop offset="0.5" style={{ stopColor: "var(--instagram-2)" }} />
+                    <stop offset="1" style={{ stopColor: "var(--instagram-3)" }} />
+                  </linearGradient>
+                </defs>
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" style={{ fill: "var(--instagram-3)", stroke: "none" }} />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

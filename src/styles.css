@@ -39,6 +39,8 @@
   --color-safety-foreground: var(--safety-foreground);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-facebook: var(--facebook);
+  --color-instagram: var(--instagram);
 }
 
 :root {
@@ -70,6 +72,11 @@
   --safety-foreground: oklch(0.98 0.01 90);
   --whatsapp: oklch(0.72 0.17 150);
   --whatsapp-foreground: oklch(0.99 0 0);
+  --facebook: oklch(0.62 0.19 258);
+  --instagram: oklch(0.63 0.21 12);
+  --instagram-1: oklch(0.83 0.15 85);
+  --instagram-2: oklch(0.64 0.24 12);
+  --instagram-3: oklch(0.52 0.24 290);
 }
 
 @layer base {
