@@ -21,6 +21,7 @@ import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as ApiRecommendRouteImport } from './routes/api/recommend'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 
@@ -84,6 +85,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/admin/orders',
+  path: '/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRecommendRoute = ApiRecommendRouteImport.update({
   id: '/api/recommend',
   path: '/api/recommend',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/api/recommend': typeof ApiRecommendRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/orders'
     | '/api/recommend'
     | '/products/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/orders'
     | '/api/recommend'
     | '/products/$id'
   id:
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/orders'
     | '/api/recommend'
     | '/products/$id'
   fileRoutesById: FileRoutesById
@@ -208,6 +220,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
   ApiRecommendRoute: typeof ApiRecommendRoute
   ProductsIdRoute: typeof ProductsIdRoute
 }
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/admin/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/recommend': {
       id: '/api/recommend'
       path: '/api/recommend'
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
   ApiRecommendRoute: ApiRecommendRoute,
   ProductsIdRoute: ProductsIdRoute,
 }
