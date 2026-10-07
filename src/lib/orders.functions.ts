@@ -14,7 +14,7 @@ export const saveWhatsAppOrder = createServerFn({ method: "POST" })
   .inputValidator((d) => OrderInput.parse(d))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("orders").insert({ ...data, source: "whatsapp" });
+    const { error } = await supabaseAdmin.from("orders").insert({ ...data, notes: data.notes ?? null, source: "whatsapp" });
     if (error) throw new Error("Could not save order");
     return { ok: true };
   });
