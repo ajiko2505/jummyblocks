@@ -10,7 +10,7 @@ const nav = [
   { to: "/catalogue", label: "Catalogue" },
   { to: "/compare", label: "Compare" },
   { to: "/advisor", label: "Advisor" },
-  { to: "/contact", label: "Contact" },
+  { to: "/contact", label: "Contact Us" },
 ] as const;
 
 function Logo() {
