@@ -86,7 +86,7 @@ function ProductPage() {
           <p className="mt-5 font-mono text-3xl font-bold">{p.price}<span className="text-base text-muted-foreground"> / {p.unit}</span></p>
           <p className="font-mono text-xs text-muted-foreground">Indicative price, ex-delivery</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <AddToCart handle={p.id} />
+            <AddToCart handle={p.shopifyHandle ?? p.id} />
             <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm border border-safety px-6 py-3 text-sm font-semibold text-foreground hover:bg-safety hover:text-safety-foreground">Buy on WhatsApp</a>
             {(p.buyUrl || site.shopUrl) && <a href={p.buyUrl || site.shopUrl} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Buy online</a>}
             <Link to="/quote" search={{ product: p.id }} className="rounded-sm border border-foreground px-6 py-3 text-sm font-semibold hover:bg-ink hover:text-ink-foreground">Request a quote</Link>
