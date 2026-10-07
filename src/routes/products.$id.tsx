@@ -5,7 +5,14 @@ import { site, waLink } from "@/lib/site";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
-import { fetchShopifyProduct } from "@/lib/shopify";
+import { fetchShopifyProduct, formatMoney } from "@/lib/shopify";
+
+function LivePrice({ handle, fallback, unit }: { handle: string; fallback: string; unit: string }) {
+  const { data: sp } = useQuery({ queryKey: ["shopify-product", handle], queryFn: () => fetchShopifyProduct(handle), staleTime: 60_000 });
+  const v = sp?.node.variants.edges[0]?.node;
+  const price = v ? formatMoney(v.price.amount, v.price.currencyCode) : fallback;
+  return <p className="mt-5 font-mono text-3xl font-bold">{price}<span className="text-base text-muted-foreground"> / {unit}</span></p>;
+}
 import { useCartStore } from "@/stores/cartStore";
 
 function AddToCart({ handle }: { handle: string }) {
@@ -83,8 +90,8 @@ function ProductPage() {
           <p className="eyebrow mb-2">{p.category}</p>
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{p.name}</h1>
           <p className="mt-3 text-muted-foreground">{p.description}</p>
-          <p className="mt-5 font-mono text-3xl font-bold">{p.price}<span className="text-base text-muted-foreground"> / {p.unit}</span></p>
-          <p className="font-mono text-xs text-muted-foreground">Indicative price, ex-delivery</p>
+          <LivePrice handle={p.shopifyHandle ?? p.id} fallback={p.price} unit={p.unit} />
+          <p className="font-mono text-xs text-muted-foreground">Price excludes delivery</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <AddToCart handle={p.shopifyHandle ?? p.id} />
             <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="rounded-sm border border-safety px-6 py-3 text-sm font-semibold text-foreground hover:bg-safety hover:text-safety-foreground">Buy on WhatsApp</a>
