@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { products } from "@/lib/products";
 import { waLink } from "@/lib/site";
+import { useServerFn } from "@tanstack/react-start";
+import { saveWhatsAppOrder } from "@/lib/orders.functions";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/order")({
   staticData: { sitemap: true },
@@ -28,8 +31,10 @@ function OrderPage() {
   const [notes, setNotes] = useState("");
   const chosen = products.filter((p) => (qty[p.id] ?? 0) > 0);
 
+  const save = useServerFn(saveWhatsAppOrder);
   const send = (e: React.FormEvent) => {
     e.preventDefault();
+    save({ data: { customer_name: name, phone, address, notes: notes || undefined, items: chosen.map((p) => ({ id: p.id, name: p.name, quantity: qty[p.id], unit: p.unit, price: p.price })) } }).catch(() => toast.error("Order not saved, but WhatsApp will still open"));
     const lines = chosen.map((p) => `• ${p.name} × ${qty[p.id]} ${p.unit} (${p.price}/${p.unit})`).join("\n");
     const msg = `Hello Jummy Blocks, I'd like to place an order:\n\n${lines}\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}${notes ? `\nNotes: ${notes}` : ""}`;
     window.open(waLink(msg), "_blank");
