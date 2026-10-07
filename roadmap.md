@@ -15,3 +15,4 @@
 - [ ] Track WhatsApp + Shopify orders together — needs owner OK to switch on Lovable Cloud
 - [ ] Real prices — waiting on owner's price list
 - [ ] Place a real test order — needs store claimed with payments set up
+- [x] Remove WhatsApp order from header menu
