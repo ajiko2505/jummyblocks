@@ -121,6 +121,43 @@ function Projects() {
         ))}
       </div>
 
+      <section className="mt-16">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow mb-2">On site now</p>
+            <h2 className="text-3xl font-extrabold tracking-tight">Ongoing projects</h2>
+          </div>
+          <p className="max-w-sm text-sm text-muted-foreground">Work in progress — our products going into the ground right now.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {ongoing.map((p) => (
+            <article key={p.title} className="group overflow-hidden rounded-md border bg-card">
+              <div className="relative overflow-hidden">
+                <img src={p.img} alt={p.title} loading="lazy" width={1024} height={768}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                <span className="absolute left-4 top-4 flex items-center gap-2 rounded-sm bg-safety px-3 py-1 font-mono text-xs uppercase tracking-wider text-safety-foreground">
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-safety-foreground" />
+                  In progress
+                </span>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-mono text-xs text-muted-foreground">{p.location}</p>
+                  <p className="font-mono text-xs font-semibold text-safety">{p.progress}</p>
+                </div>
+                <h3 className="mt-2 text-xl font-bold">{p.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.products.map((prod) => (
+                    <span key={prod} className="rounded-sm border px-2.5 py-1 font-mono text-xs">{prod}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="blueprint-grid mt-16 rounded-md bg-blueprint text-blueprint-foreground">
         <div className="grid items-center gap-6 px-6 py-12 md:grid-cols-2 md:px-10">
           <div>
