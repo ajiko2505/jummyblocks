@@ -17,6 +17,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as OrderRouteImport } from './routes/order'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -65,6 +66,11 @@ const OrderRoute = OrderRouteImport.update({
   path: '/order',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuoteRoute = QuoteRouteImport.update({
   id: '/quote',
   path: '/quote',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/order'
+    | '/projects'
     | '/quote'
     | '/shop'
     | '/sitemap.xml'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/order'
+    | '/projects'
     | '/quote'
     | '/shop'
     | '/sitemap.xml'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/learn'
     | '/order'
+    | '/projects'
     | '/quote'
     | '/shop'
     | '/sitemap.xml'
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LearnRoute: typeof LearnRoute
   OrderRoute: typeof OrderRoute
+  ProjectsRoute: typeof ProjectsRoute
   QuoteRoute: typeof QuoteRoute
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -283,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quote': {
       id: '/quote'
       path: '/quote'
@@ -344,6 +364,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LearnRoute: LearnRoute,
   OrderRoute: OrderRoute,
+  ProjectsRoute: ProjectsRoute,
   QuoteRoute: QuoteRoute,
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
