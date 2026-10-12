@@ -3,6 +3,8 @@ import estate from "@/assets/project-estate-driveway.jpg";
 import warehouse from "@/assets/project-warehouse-yard.jpg";
 import blockHome from "@/assets/project-block-home.jpg";
 import garden from "@/assets/project-garden-walkway.jpg";
+import ongoingRoad from "@/assets/project-ongoing-road.jpg";
+import ongoingDuplex from "@/assets/project-ongoing-duplex.jpg";
 
 export const Route = createFileRoute("/projects")({
   staticData: { sitemap: true },
@@ -51,6 +53,25 @@ const projects = [
     products: ["Decorative slabs", "Garden kerbs"],
     text: "A decorative-slab walkway with precast garden kerbs edging the lawn — a clean, low-maintenance finish for a family garden.",
     tag: "Landscaping",
+  },
+];
+
+const ongoing = [
+  {
+    img: ongoingRoad,
+    title: "Estate access road repaving",
+    location: "Lagos",
+    products: ["80mm I-Type interlocks", "Road kerbs"],
+    text: "Crews are relaying a failed asphalt stretch with 80mm interlock on a compacted base — about two-thirds of the carriageway is down, with kerbing and jointing to follow.",
+    progress: "65% complete",
+  },
+  {
+    img: ongoingDuplex,
+    title: "Two-storey family home",
+    location: "Lagos",
+    products: ['9" hollow blocks', '6" hollow blocks'],
+    text: "Blockwork is rising on a two-storey home: 9-inch hollow blocks for the external walls, 6-inch for partitions. We deliver blocks in phased batches as each floor goes up.",
+    progress: "First-floor walls underway",
   },
 ];
 
