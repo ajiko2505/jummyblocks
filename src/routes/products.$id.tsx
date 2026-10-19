@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { fetchShopifyProduct, formatMoney } from "@/lib/shopify";
+import { getRelatedProducts } from "@/lib/related.functions";
 
 function LivePrice({ handle, fallback, unit }: { handle: string; fallback: string; unit: string }) {
   const { data: sp } = useQuery({ queryKey: ["shopify-product", handle], queryFn: () => fetchShopifyProduct(handle), staleTime: 60_000 });
@@ -59,6 +60,41 @@ function ProductNotFound() {
       <h1 className="text-3xl font-extrabold">Product not found</h1>
       <Link to="/catalogue" className="mt-4 inline-block font-semibold underline">Back to catalogue</Link>
     </div>
+  );
+}
+
+function YouMayAlsoLike({ id, fallback }: { id: string; fallback: string[] }) {
+  const { data, isLoading } = useQuery({
+    queryKey: ["related-ai", id],
+    queryFn: () => getRelatedProducts({ data: { id } }),
+    staleTime: Infinity,
+    retry: false,
+  });
+  const picks = data?.picks?.length ? data.picks : fallback.map((fid) => ({ id: fid, reason: "" }));
+  const list = picks.map((pk) => ({ ...pk, product: products.find((x) => x.id === pk.id) })).filter((x) => x.product);
+  return (
+    <section className="mt-14" aria-labelledby="also-like-heading">
+      <p className="eyebrow mb-2">Picked for your project</p>
+      <h2 id="also-like-heading" className="mb-4 text-xl font-extrabold">You may also like</h2>
+      {isLoading ? (
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[0, 1, 2].map((i) => <div key={i} className="aspect-[16/12] animate-pulse rounded-md border bg-card" />)}
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-3">
+          {list.map(({ product: r, reason }) => r && (
+            <Link key={r.id} to="/products/$id" params={{ id: r.id }} className="overflow-hidden rounded-md border bg-card hover:border-foreground">
+              <img src={r.image} alt={r.name} width={1024} height={768} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+              <div className="p-4">
+                <p className="font-bold">{r.name}</p>
+                <p className="mt-1 font-mono text-xs text-muted-foreground">{r.price}/{r.unit}</p>
+                {reason && <p className="mt-2 text-sm text-muted-foreground">{reason}</p>}
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -130,19 +166,7 @@ function ProductPage() {
           </video>
         </div>
       </section>
-      {related.length > 0 && (
-        <section className="mt-14">
-          <h2 className="mb-4 text-xl font-extrabold">Related products</h2>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {related.map((r) => (
-              <Link key={r.id} to="/products/$id" params={{ id: r.id }} className="overflow-hidden rounded-md border bg-card hover:border-foreground">
-                <img src={r.image} alt={r.name} width={944} height={704} loading="lazy" className="aspect-[16/10] w-full object-cover" />
-                <p className="p-4 font-bold">{r.name}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <YouMayAlsoLike id={p.id} fallback={related.map((r) => r.id)} />
     </div>
   );
 }

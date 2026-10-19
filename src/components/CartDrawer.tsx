@@ -48,11 +48,12 @@ export function CartDrawer() {
           <>
             <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4">
               {items.map((item) => {
-                const img = item.product.node.images?.edges?.[0]?.node;
+                const local = products.find((p) => p.shopifyHandle === item.product.node.handle);
+                const imgUrl = local?.image ?? item.product.node.images?.edges?.[0]?.node?.url;
                 return (
                   <div key={item.variantId} className="flex gap-3 border-b pb-4">
                     <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-sm bg-secondary">
-                      {img && <img src={img.url} alt={item.product.node.title} className="h-full w-full object-cover" />}
+                      {imgUrl && <img src={imgUrl} alt={item.product.node.title} className="h-full w-full object-cover" />}
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="truncate font-semibold">{item.product.node.title}</h4>
