@@ -17,3 +17,4 @@
 - [ ] Place a real test order — needs store claimed with payments set up
 - [x] Remove WhatsApp order from header menu
 - [ ] WhatsApp assistant (answers leads 24/7, quotes, books site visits/deliveries Mon–Sat 8–5 1h slots, hands over via orders page) — blocked: WhatsApp Business number not connected yet
+- [x] Post every new lead (quote, Advisor enquiry, WhatsApp order) to Slack #all-jummy-blocks
