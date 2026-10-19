@@ -83,6 +83,7 @@ function Contact() {
       </div>
 
       <div className="mt-10 flex flex-wrap gap-3">
+        <Link to="/book" className="rounded-sm bg-safety px-6 py-3 text-sm font-semibold text-safety-foreground">Book a time</Link>
         <a href={waLink(defaultWaMessage)} target="_blank" rel="noopener noreferrer" className="rounded-sm bg-whatsapp px-6 py-3 text-sm font-semibold text-whatsapp-foreground">Chat on WhatsApp</a>
         <Link to="/quote" className="rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground hover:bg-safety">Request a quote</Link>
       </div>

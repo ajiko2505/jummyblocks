@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdvisorRouteImport } from './routes/advisor'
+import { Route as BookRouteImport } from './routes/book'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -39,6 +40,11 @@ const AboutRoute = AboutRouteImport.update({
 const AdvisorRoute = AdvisorRouteImport.update({
   id: '/advisor',
   path: '/advisor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogueRoute = CatalogueRouteImport.update({
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisor': typeof AdvisorRoute
+  '/book': typeof BookRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisor': typeof AdvisorRoute
+  '/book': typeof BookRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisor': typeof AdvisorRoute
+  '/book': typeof BookRoute
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisor'
+    | '/book'
     | '/catalogue'
     | '/compare'
     | '/contact'
@@ -186,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisor'
+    | '/book'
     | '/catalogue'
     | '/compare'
     | '/contact'
@@ -204,6 +215,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisor'
+    | '/book'
     | '/catalogue'
     | '/compare'
     | '/contact'
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdvisorRoute: typeof AdvisorRoute
+  BookRoute: typeof BookRoute
   CatalogueRoute: typeof CatalogueRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
@@ -259,6 +272,13 @@ declare module '@tanstack/react-router' {
       path: '/advisor'
       fullPath: '/advisor'
       preLoaderRoute: typeof AdvisorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalogue': {
@@ -359,6 +379,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdvisorRoute: AdvisorRoute,
+  BookRoute: BookRoute,
   CatalogueRoute: CatalogueRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
