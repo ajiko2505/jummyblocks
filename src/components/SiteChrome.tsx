@@ -97,7 +97,7 @@ export function Footer() {
           <address className="space-y-2 text-sm not-italic text-ink-foreground/80">
             <p className="font-semibold text-ink-foreground">Jummy Blocks</p>
             <p>{site.address}</p>
-            <p><a href={`tel:+${site.whatsapp}`} className="hover:text-safety">{site.phoneDisplay}</a></p>
+            <p><a href={`tel:+${site.phone}`} className="hover:text-safety">{site.phoneDisplay}</a></p>
             <p><a href={`mailto:${site.email}`} className="hover:text-safety">{site.email}</a></p>
             <p>{site.hours}</p>
           </address>

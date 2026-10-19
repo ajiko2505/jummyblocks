@@ -1,7 +1,9 @@
 export const site = {
   name: "Jummy Blocks",
   address: "No 11 Jubril Aminu, Parkview Estate, Ikoyi, Lagos",
-  whatsapp: "2348066278073",
+  whatsapp: "2348110165736",
+  whatsappDisplay: "+234 811 016 5736",
+  phone: "2348066278073",
   phoneDisplay: "+234 806 627 8073",
   email: "snapknowledge101@gmail.com",
   hours: "Monday – Saturday | 8am – 5pm",

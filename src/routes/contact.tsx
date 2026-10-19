@@ -23,8 +23,8 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const items: { label: string; value: string; href?: string }[] = [
     { label: "Visit", value: site.address, href: directionsUrl },
-    { label: "Call", value: site.phoneDisplay, href: `tel:+${site.whatsapp}` },
-    { label: "WhatsApp", value: site.phoneDisplay, href: waLink(defaultWaMessage) },
+    { label: "Call", value: site.phoneDisplay, href: `tel:+${site.phone}` },
+    { label: "WhatsApp", value: site.whatsappDisplay, href: waLink(defaultWaMessage) },
     { label: "Email", value: site.email, href: `mailto:${site.email}` },
     { label: "Hours", value: site.hours },
   ];
