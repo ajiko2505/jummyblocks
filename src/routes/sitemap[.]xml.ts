@@ -4,7 +4,7 @@ import { sitemapStaticPaths, sitemapXML, sitemapPathForLocation, isSitemapRouteI
 import { products } from "@/lib/products";
 
 
-const BASE_URL = "https://pixel-perfect-paint-949.lovable.app";
+const BASE_URL = "https://jummyblocks.lovable.app";
 
 export const Route = createFileRoute("/sitemap.xml")({
   staticData: { sitemap: false },
