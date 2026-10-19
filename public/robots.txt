@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pixel-perfect-paint-949.lovable.app/sitemap.xml
+Sitemap: https://jummyblocks.lovable.app/sitemap.xml
