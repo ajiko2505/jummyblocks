@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { postLeadToSlack } from "./slack.server";
 
 const OrderInput = z.object({
   customer_name: z.string().trim().min(1).max(120),
@@ -16,5 +17,12 @@ export const saveWhatsAppOrder = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("orders").insert({ ...data, notes: data.notes ?? null, source: "whatsapp" });
     if (error) throw new Error("Could not save order");
+    await postLeadToSlack("New WhatsApp order", {
+      Name: data.customer_name,
+      Phone: data.phone,
+      Address: data.address,
+      Items: data.items.map((i) => `${i.quantity} ${i.unit} ${i.name}`).join(", "),
+      Notes: data.notes,
+    });
     return { ok: true };
   });

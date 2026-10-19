@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { products } from "@/lib/products";
 import { waLink } from "@/lib/site";
+import { useServerFn } from "@tanstack/react-start";
+import { notifyLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/advisor")({
   staticData: { sitemap: true },
@@ -147,6 +149,7 @@ const lbl = "font-mono text-xs uppercase tracking-wider text-muted-foreground";
 
 function EnquiryForm({ project, suggested }: { project: string; suggested: string }) {
   const [sent, setSent] = useState(false);
+  const notify = useServerFn(notifyLead);
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
@@ -163,6 +166,7 @@ function EnquiryForm({ project, suggested }: { project: string; suggested: strin
       suggested && `Advisor suggested: ${suggested}`,
     ].filter(Boolean).join("\n");
     window.open(waLink(msg), "_blank", "noopener,noreferrer");
+    notify({ data: { kind: "advisor", name: g("name"), phone: g("phone"), email: g("email") || undefined, location: g("location"), budget: g("budget") || undefined, timeline: g("timeline") || undefined, project: g("project"), suggested: suggested || undefined } }).catch(() => {});
     setSent(true);
   }
   return (

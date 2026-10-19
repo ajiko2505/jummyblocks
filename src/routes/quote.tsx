@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { products } from "@/lib/products";
+import { useServerFn } from "@tanstack/react-start";
+import { notifyLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/quote")({
   staticData: { sitemap: true },
@@ -22,6 +24,21 @@ const field = "mt-1 h-11 w-full rounded-sm border bg-background px-3 text-sm out
 function Quote() {
   const { product } = Route.useSearch();
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  const notify = useServerFn(notifyLead);
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const g = (k: string) => String(f.get(k) ?? "").trim();
+    setBusy(true); setErr("");
+    try {
+      await notify({ data: { kind: "quote", name: g("name"), phone: g("phone"), location: g("location"), product: products.find((p) => p.id === g("product"))?.name, quantity: g("quantity") } });
+      setSent(true);
+    } catch {
+      setErr("Sorry, that didn't send. Please try again or message us on WhatsApp.");
+    } finally { setBusy(false); }
+  }
   return (
     <section className="blueprint-grid bg-blueprint text-blueprint-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:grid-cols-2">
@@ -41,17 +58,18 @@ function Quote() {
               <p className="mt-2 text-muted-foreground">We'll contact you shortly with your quote.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="grid grid-cols-2 gap-4">
-              <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Full name</span><input required className={field} /></label>
-              <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Phone</span><input required type="tel" className={field} /></label>
-              <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Location</span><input required placeholder="Lekki, Lagos" className={field} /></label>
+            <form onSubmit={submit} className="grid grid-cols-2 gap-4">
+              <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Full name</span><input name="name" required maxLength={120} className={field} /></label>
+              <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Phone</span><input name="phone" required maxLength={30} type="tel" className={field} /></label>
+              <label className="col-span-2 sm:col-span-1"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Location</span><input name="location" required maxLength={150} placeholder="Lekki, Lagos" className={field} /></label>
               <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Product</span>
-                <select defaultValue={product ?? products[0]?.id} className={field}>
+                <select name="product" defaultValue={product ?? products[0]?.id} className={field}>
                   {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
                 </select>
               </label>
-              <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Quantity</span><input required placeholder="e.g. 1,000 blocks or 200 m²" className={field} /></label>
-              <button className="col-span-2 mt-1 rounded-sm bg-ink py-3 font-semibold text-ink-foreground hover:bg-safety">Send quote request</button>
+              <label className="col-span-2"><span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Quantity</span><input name="quantity" required maxLength={120} placeholder="e.g. 1,000 blocks or 200 m²" className={field} /></label>
+              {err && <p className="col-span-2 text-sm text-destructive">{err}</p>}
+              <button disabled={busy} className="col-span-2 mt-1 rounded-sm bg-ink py-3 font-semibold text-ink-foreground hover:bg-safety disabled:opacity-50">{busy ? "Sending…" : "Send quote request"}</button>
             </form>
           )}
         </div>
