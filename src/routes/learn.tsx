@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { guideLinks } from "@/components/GuidePage";
 import installationLaying from "@/assets/installation-laying.jpg";
 import productionBlocks from "@/assets/production-blocks.jpg";
 import installationFinishing from "@/assets/installation-finishing.jpg";
@@ -8,10 +9,10 @@ export const Route = createFileRoute("/learn")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Learn Hub — Jummy Blocks" },
-      { name: "description", content: "Plain-language guides to paving stones, interlocks, sandcrete blocks, kerbs and heavy-duty paving." },
-      { property: "og:title", content: "Learn Hub — Jummy Blocks" },
-      { property: "og:description", content: "Understand paving stones and blocks before you buy." },
+      { title: "Paving Stones & Interlocks Guide for Nigerian Builders | Jummy Blocks" },
+      { name: "description", content: "Simple guides to interlocking stones, paving stones and sandcrete blocks in Nigeria: thickness, strength, laying, how to spot weak blocks and Lagos prices." },
+      { property: "og:title", content: "Paving Stones & Interlocks Guide for Nigerian Builders" },
+      { property: "og:description", content: "Learn interlocks, paving stones and blocks before you buy — with Lagos prices." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -68,6 +69,12 @@ function Learn() {
       <p className="eyebrow mb-3">Learn hub</p>
       <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">Everything you should know before buying blocks.</h1>
       <p className="mt-4 max-w-xl text-muted-foreground">Short, honest guides for homeowners, builders and engineers.</p>
+      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        {guideLinks.map((g) => (
+          <Link key={g.to} to={g.to} className="rounded-md border bg-card p-4 font-semibold hover:border-safety">{g.label} →</Link>
+        ))}
+      </div>
+
 
       <section className="mt-12" aria-labelledby="process-heading">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">

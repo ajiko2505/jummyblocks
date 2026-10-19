@@ -6,10 +6,12 @@ export const Route = createFileRoute("/catalogue")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Product Catalogue — Jummy Blocks" },
-      { name: "description", content: "Interlocks, sandcrete blocks and kerbs with full specs and indicative Naira prices." },
-      { property: "og:title", content: "Product Catalogue — Jummy Blocks" },
-      { property: "og:description", content: "Browse graded blocks, interlocks and kerbs with specs." },
+      { title: "Buy Interlocking Stones, Paving Stones & Blocks in Lagos | Jummy Blocks" },
+      { name: "description", content: "Shop 60mm and 80mm interlocks, hex pavers, slabs, 6\" and 9\" sandcrete blocks and kerbs with full specs and Naira prices. Delivery across Lagos." },
+      { property: "og:title", content: "Interlocking Stones, Paving Stones & Blocks — Lagos Prices" },
+      { property: "og:description", content: "Full specs and Naira prices for interlocks, pavers, blocks and kerbs." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Catalogue,
