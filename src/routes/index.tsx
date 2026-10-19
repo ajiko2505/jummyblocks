@@ -6,10 +6,12 @@ export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Jummy Blocks — Know Your Blocks. Build With Confidence." },
-      { name: "description", content: "Learn, compare and choose quality paving stones, interlocks, sandcrete blocks and kerbs for Nigerian construction." },
-      { property: "og:title", content: "Jummy Blocks — Know Your Blocks. Build With Confidence." },
-      { property: "og:description", content: "The educational hub for paving stones, interlocks, blocks and kerbs in Nigeria." },
+      { title: "Interlocking Stones & Paving Stones in Lagos | Jummy Blocks" },
+      { name: "description", content: "Quality interlocking stones, paving stones, sandcrete blocks and kerbs in Lagos. Compare specs, see Naira prices and get a free quote from Jummy Blocks, Ikoyi." },
+      { property: "og:title", content: "Interlocking Stones & Paving Stones in Lagos | Jummy Blocks" },
+      { property: "og:description", content: "Compare interlocks, paving stones and blocks, see Lagos prices and get a free quote." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

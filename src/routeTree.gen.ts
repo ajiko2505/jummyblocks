@@ -16,8 +16,11 @@ import { Route as BookRouteImport } from './routes/book'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as InterlockingStonesRouteImport } from './routes/interlocking-stones'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as OrderRouteImport } from './routes/order'
+import { Route as PavingStonePricesLagosRouteImport } from './routes/paving-stone-prices-lagos'
+import { Route as PavingStonesRouteImport } from './routes/paving-stones'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -62,6 +65,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InterlockingStonesRoute = InterlockingStonesRouteImport.update({
+  id: '/interlocking-stones',
+  path: '/interlocking-stones',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
@@ -70,6 +78,16 @@ const LearnRoute = LearnRouteImport.update({
 const OrderRoute = OrderRouteImport.update({
   id: '/order',
   path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PavingStonePricesLagosRoute = PavingStonePricesLagosRouteImport.update({
+  id: '/paving-stone-prices-lagos',
+  path: '/paving-stone-prices-lagos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PavingStonesRoute = PavingStonesRouteImport.update({
+  id: '/paving-stones',
+  path: '/paving-stones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -121,8 +139,11 @@ export interface FileRoutesByFullPath {
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/interlocking-stones': typeof InterlockingStonesRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/paving-stone-prices-lagos': typeof PavingStonePricesLagosRoute
+  '/paving-stones': typeof PavingStonesRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
@@ -140,8 +161,11 @@ export interface FileRoutesByTo {
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/interlocking-stones': typeof InterlockingStonesRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/paving-stone-prices-lagos': typeof PavingStonePricesLagosRoute
+  '/paving-stones': typeof PavingStonesRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
@@ -160,8 +184,11 @@ export interface FileRoutesById {
   '/catalogue': typeof CatalogueRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/interlocking-stones': typeof InterlockingStonesRoute
   '/learn': typeof LearnRoute
   '/order': typeof OrderRoute
+  '/paving-stone-prices-lagos': typeof PavingStonePricesLagosRoute
+  '/paving-stones': typeof PavingStonesRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
   '/shop': typeof ShopRoute
@@ -181,8 +208,11 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/compare'
     | '/contact'
+    | '/interlocking-stones'
     | '/learn'
     | '/order'
+    | '/paving-stone-prices-lagos'
+    | '/paving-stones'
     | '/projects'
     | '/quote'
     | '/shop'
@@ -200,8 +230,11 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/compare'
     | '/contact'
+    | '/interlocking-stones'
     | '/learn'
     | '/order'
+    | '/paving-stone-prices-lagos'
+    | '/paving-stones'
     | '/projects'
     | '/quote'
     | '/shop'
@@ -219,8 +252,11 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/compare'
     | '/contact'
+    | '/interlocking-stones'
     | '/learn'
     | '/order'
+    | '/paving-stone-prices-lagos'
+    | '/paving-stones'
     | '/projects'
     | '/quote'
     | '/shop'
@@ -239,8 +275,11 @@ export interface RootRouteChildren {
   CatalogueRoute: typeof CatalogueRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  InterlockingStonesRoute: typeof InterlockingStonesRoute
   LearnRoute: typeof LearnRoute
   OrderRoute: typeof OrderRoute
+  PavingStonePricesLagosRoute: typeof PavingStonePricesLagosRoute
+  PavingStonesRoute: typeof PavingStonesRoute
   ProjectsRoute: typeof ProjectsRoute
   QuoteRoute: typeof QuoteRoute
   ShopRoute: typeof ShopRoute
@@ -302,6 +341,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interlocking-stones': {
+      id: '/interlocking-stones'
+      path: '/interlocking-stones'
+      fullPath: '/interlocking-stones'
+      preLoaderRoute: typeof InterlockingStonesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn': {
       id: '/learn'
       path: '/learn'
@@ -314,6 +360,20 @@ declare module '@tanstack/react-router' {
       path: '/order'
       fullPath: '/order'
       preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paving-stone-prices-lagos': {
+      id: '/paving-stone-prices-lagos'
+      path: '/paving-stone-prices-lagos'
+      fullPath: '/paving-stone-prices-lagos'
+      preLoaderRoute: typeof PavingStonePricesLagosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paving-stones': {
+      id: '/paving-stones'
+      path: '/paving-stones'
+      fullPath: '/paving-stones'
+      preLoaderRoute: typeof PavingStonesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -383,8 +443,11 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogueRoute: CatalogueRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  InterlockingStonesRoute: InterlockingStonesRoute,
   LearnRoute: LearnRoute,
   OrderRoute: OrderRoute,
+  PavingStonePricesLagosRoute: PavingStonePricesLagosRoute,
+  PavingStonesRoute: PavingStonesRoute,
   ProjectsRoute: ProjectsRoute,
   QuoteRoute: QuoteRoute,
   ShopRoute: ShopRoute,
