@@ -3,7 +3,7 @@ import { guideLinks } from "@/components/GuidePage";
 import installationLaying from "@/assets/installation-laying.jpg";
 import productionBlocks from "@/assets/production-blocks.jpg";
 import installationFinishing from "@/assets/installation-finishing.jpg";
-import processVideo from "@/assets/how-blocks-and-pavers-are-made.mp4.asset.json";
+const processVideo = { url: "/videos/how-blocks-and-pavers-are-made.mp4" };
 
 export const Route = createFileRoute("/learn")({
   staticData: { sitemap: true },
